@@ -7,7 +7,12 @@ class conteoController {
       final numeros = inputs
           .where((e) => e.trim().isNotEmpty)
           .map((e) {
-        final n = int.parse(e);
+
+        final n = int.tryParse(e);
+
+        if (n == null) {
+          throw Exception("Solo se permiten números válidos");
+        }
 
         if (n < 0) {
           throw Exception("Solo números naturales (>=0)");
@@ -16,11 +21,14 @@ class conteoController {
         return n;
       }).toList();
 
+
       if (numeros.isEmpty) {
         return "Ingrese al menos un número";
       }
 
+
       final r = conteoModelo.analizar(numeros);
+
 
       return '''
         Resultados:

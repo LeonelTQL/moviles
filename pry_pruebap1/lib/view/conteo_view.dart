@@ -39,7 +39,7 @@ class PrimaryButton extends StatelessWidget {
   }
 }
 
-/// 2. ORGANISMO (DINÁMICO)
+/// 2. ORGANISMO
 
 class NumerosCard extends StatefulWidget {
   const NumerosCard({super.key});
