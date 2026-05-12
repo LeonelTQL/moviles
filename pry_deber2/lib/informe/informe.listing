@@ -1,0 +1,31 @@
+class Chofer {
+  // Atributos: nombre, horasDiarias, sueldoPorHora, etc.
+
+  double calcularTotalHoras() => horasDiarias.fold(0, (a, b) => a + b);
+
+  double calcularSueldoSemanal() {
+    double base = calcularTotalHoras() * sueldoPorHora;
+    return recibeBono ? base + 50.0 : base;
+  }
+}
+
+class NominaModel {
+  final List<Chofer> choferes;
+  NominaModel({required this.choferes});
+
+  double calcularTotalEmpresa() {
+    return choferes.fold(0, (total, chofer) =>
+               total + chofer.calcularSueldoSemanal());
+  }
+
+  String obtenerChoferMasHorasLunes() {
+    if (choferes.isEmpty) return "No se registraron choferes";
+    Chofer destacado = choferes.first;
+    for (var chofer in choferes) {
+      if (chofer.horasDiarias[0] > destacado.horasDiarias[0]) {
+        destacado = chofer;
+      }
+    }
+    return destacado.nombre;
+  }
+}
