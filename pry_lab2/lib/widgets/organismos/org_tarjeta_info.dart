@@ -7,6 +7,7 @@ class OrgTarjetaInfo extends StatelessWidget {
   final Color? colorFondo;
 
   const OrgTarjetaInfo({
+    super.key,
     required this.titulo,
     required this.contenido,
     this.colorFondo,

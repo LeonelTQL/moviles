@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
-import '../widgets/atomos/atom_button.dart';
+import '../widgets/atomos/boton_principal_app.dart';
 import '../widgets/organismos/org_tarjeta_info.dart';
 
 class ResultadoView extends StatelessWidget {
+  const ResultadoView({super.key});
+
   @override
   Widget build(BuildContext context) {
     final datos = ModalRoute.of(context)!.settings.arguments as Map<String, String>?;
 
     if (datos == null || datos.containsKey('error')) {
       return Scaffold(
-        appBar: AppBar(title: Text("Error")),
+        appBar: AppBar(title: const Text("Error")),
         body: Center(child: Text(datos?['error'] ?? "Error desconocido.")),
       );
     }
 
     return Scaffold(
-      appBar: AppBar(title: Text("Resumen de Operación")),
+      appBar: AppBar(title: const Text("Resumen de Operación")),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -23,19 +25,20 @@ class ResultadoView extends StatelessWidget {
             OrgTarjetaInfo(
               titulo: "Factura del Cliente",
               contenido: datos['factura']!,
-              colorFondo: Colors.blue[50],
+              colorFondo: Theme.of(context).colorScheme.primaryContainer.withValues(alpha: 0.3),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             OrgTarjetaInfo(
               titulo: "Sueldo del Vendedor",
               contenido: datos['sueldo']!,
-              colorFondo: Colors.green[50],
+              colorFondo: Theme.of(context).colorScheme.secondaryContainer.withValues(alpha: 0.3),
             ),
-            SizedBox(height: 40),
-            AtomButton(
-                label: "Volver (Pop)",
+            const SizedBox(height: 40),
+            BotonPrincipalApp(
+                texto: "Volver al Menú",
+                icono: Icons.home,
                 onPressed: () {
-                  Navigator.pop(context); // Regresa a la pantalla anterior
+                  Navigator.pop(context);
                 }
             ),
           ],

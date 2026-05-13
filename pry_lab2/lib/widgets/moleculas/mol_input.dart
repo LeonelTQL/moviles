@@ -7,6 +7,7 @@ class MolInput extends StatelessWidget {
   final TextInputType keyboardType;
 
   const MolInput({
+    super.key,
     required this.controller,
     required this.label,
     this.keyboardType = TextInputType.text,

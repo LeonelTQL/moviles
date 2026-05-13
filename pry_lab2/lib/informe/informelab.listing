@@ -1,0 +1,14 @@
+  void procesarArticulos(List<double> precios) {
+    double totalGlobal = 0.0;
+
+    for (double precio in precios) {
+      double descuento = 0.0;
+      if (precio >= 200) descuento = precio * 0.15;
+      else if (precio > 100) descuento = precio * 0.12;
+      else descuento = precio * 0.10;
+
+      double precioFinal = precio - descuento;
+      totalGlobal += precioFinal;
+    }
+    // 'totalGlobal' contiene lo que se pagará en total
+  }

@@ -1,0 +1,35 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción}{2}{section.1}%
+\contentsline {section}{\numberline {2}Objetivos}{2}{section.2}%
+\contentsline {section}{\numberline {3}Marco Teórico}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Flutter}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Dart}{2}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Android Studio}{2}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Splash Screen}{3}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Navegabilidad (push, pop, pushNamed)}{3}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Desarrollo de los Ejercicios}{3}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Splash Screen y Pantalla Principal}{3}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Problema 1: Cálculo de IVA y Descuento}{6}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Pseudocódigo}{6}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Diagrama Nassi-Shneiderman}{7}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Código }{7}{subsubsection.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.4}Ejecución}{8}{subsubsection.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.5}Salida Esperada}{9}{subsubsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.3}Problemas 2}{10}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Ejercicio 4.1: Incremento salarial}{10}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Ejecución}{11}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Salida Esperada}{12}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.4}Ejercicio 4.2: El náufrago satisfecho}{13}{subsubsection.4.3.4}%
+\contentsline {subsubsection}{\numberline {4.3.5}Ejecución}{15}{subsubsection.4.3.5}%
+\contentsline {subsubsection}{\numberline {4.3.6}Salida Esperada}{16}{subsubsection.4.3.6}%
+\contentsline {subsubsection}{\numberline {4.3.7}Ejercicio 4.3: Contar cantidades}{17}{subsubsection.4.3.7}%
+\contentsline {subsubsection}{\numberline {4.3.8}Ejecución}{18}{subsubsection.4.3.8}%
+\contentsline {subsubsection}{\numberline {4.3.9}Salida Esperada}{19}{subsubsection.4.3.9}%
+\contentsline {subsubsection}{\numberline {4.3.10}Ejercicio 4.8: Promoción de artículos}{20}{subsubsection.4.3.10}%
+\contentsline {subsubsection}{\numberline {4.3.11}Ejecución}{22}{subsubsection.4.3.11}%
+\contentsline {subsubsection}{\numberline {4.3.12}Salida Esperada}{23}{subsubsection.4.3.12}%
+\contentsline {section}{\numberline {5}Conclusiones}{24}{section.5}%
+\contentsline {section}{\numberline {6}Referencias}{24}{section.6}%
+\contentsline {section}{\numberline {7}Anexos}{24}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Repositorio de código fuente}{24}{subsection.7.1}%
+\contentsline {subsubsection}{\numberline {7.1.1}Enlace principal}{24}{subsubsection.7.1.1}%

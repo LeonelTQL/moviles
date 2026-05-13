@@ -8,6 +8,7 @@ class MolProductoItem extends StatelessWidget {
   final VoidCallback onEliminar;
 
   const MolProductoItem({
+    super.key,
     required this.nombre,
     required this.cantidad,
     required this.total,

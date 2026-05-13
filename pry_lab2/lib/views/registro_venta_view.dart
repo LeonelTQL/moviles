@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import '../controllers/venta_controller.dart';
-import '../widgets/atomos/atom_button.dart';
+import '../widgets/atomos/boton_principal_app.dart';
 import '../widgets/moleculas/mol_input.dart';
 import '../widgets/moleculas/mol_producto_item.dart';
+import '../widgets/moleculas/encabezado_ejercicio.dart';
 
 class RegistroVentaView extends StatefulWidget {
+  const RegistroVentaView({super.key});
+
   @override
   State<RegistroVentaView> createState() => _RegistroVentaViewState();
 }
@@ -22,7 +25,7 @@ class _RegistroVentaViewState extends State<RegistroVentaView> {
   final _prodCantidadInput = TextEditingController();
 
 
-  List<Map<String, dynamic>> _productosAgregados = [];
+  final List<Map<String, dynamic>> _productosAgregados = [];
 
   void _agregarProducto() {
     final nombre = _prodNombreInput.text;
@@ -61,30 +64,32 @@ class _RegistroVentaViewState extends State<RegistroVentaView> {
       listaProductosAnadidos: _productosAgregados,
     );
 
-    Navigator.pushNamed(context, '/resultado', arguments: resultado);
+    Navigator.pushNamed(context, '/resultado_ventas', arguments: resultado);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Registro de Transacción")),
-
+      appBar: AppBar(title: const Text("Registro de Ventas")),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-
-          Text("Datos de la Operación", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          SizedBox(height: 10),
+          const EncabezadoEjercicio(
+            titulo: 'Sistema de Ventas', 
+            descripcion: 'Registre los datos de la operación y añada productos al carrito para calcular el total.'
+          ),
+          const SizedBox(height: 20),
+          Text("Datos de la Operación", style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
           MolInput(controller: _vendedorInput, label: "Vendedor"),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           MolInput(controller: _clienteInput, label: "Cliente"),
-          Divider(height: 30, thickness: 2),
+          const Divider(height: 30),
 
-
-          Text("Agregar Producto", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          SizedBox(height: 10),
+          Text("Agregar Producto", style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
+          const SizedBox(height: 10),
           MolInput(controller: _prodNombreInput, label: "Nombre del Producto"),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             children: [
               Expanded(
@@ -94,7 +99,7 @@ class _RegistroVentaViewState extends State<RegistroVentaView> {
                     keyboardType: TextInputType.number
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
                 child: MolInput(
                     controller: _prodCantidadInput,
@@ -104,22 +109,20 @@ class _RegistroVentaViewState extends State<RegistroVentaView> {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 16),
           ElevatedButton.icon(
             onPressed: _agregarProducto,
-            icon: Icon(Icons.add_shopping_cart),
-            label: Text("Agregar a la lista"),
+            icon: const Icon(Icons.add_shopping_cart),
+            label: const Text("Agregar a la lista"),
           ),
-          Divider(height: 30, thickness: 2),
-
+          const Divider(height: 30),
 
           Text("Productos en el Carrito (${_productosAgregados.length})",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Theme.of(context).colorScheme.primary)),
 
-
           ListView.builder(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: _productosAgregados.length,
             itemBuilder: (context, index) {
               final prod = _productosAgregados[index];
@@ -131,10 +134,13 @@ class _RegistroVentaViewState extends State<RegistroVentaView> {
               );
             },
           ),
-          SizedBox(height: 30),
+          const SizedBox(height: 24),
 
-          // Botón Final
-          AtomButton(label: "Calcular Venta Completa", onPressed: _procesarVenta),
+          BotonPrincipalApp(
+            texto: "Calcular Venta Completa", 
+            icono: Icons.calculate, 
+            onPressed: _procesarVenta
+          ),
         ],
       ),
     );

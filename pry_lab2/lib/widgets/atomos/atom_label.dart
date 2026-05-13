@@ -4,7 +4,7 @@ class AtomLabel extends StatelessWidget {
   final String text;
   final bool isTitle;
 
-  const AtomLabel({required this.text, this.isTitle = false});
+  const AtomLabel({super.key, required this.text, this.isTitle = false});
 
   @override
   Widget build(BuildContext context) {
