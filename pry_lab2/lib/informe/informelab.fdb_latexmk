@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1778641460.14005 "c:/Users/Usuario-PC/Desktop/Respaldos Cliente Leonel Tipan/Desktop/Universidad/8vosemestre/moviles/pry_lab2/lib/informe/informelab.tex" "informelab.pdf" "informelab" 1778641461.71622 0
+["pdflatex"] 1778642048.99097 "c:/Users/Usuario-PC/Desktop/Respaldos Cliente Leonel Tipan/Desktop/Universidad/8vosemestre/moviles/pry_lab2/lib/informe/informelab.tex" "informelab.pdf" "informelab" 1778642050.52165 0
   "C:/Users/Usuario-PC/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1778462672 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/Usuario-PC/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1778461106 14064 790539ac52f6bc7f480d322591fd348b ""
   "C:/Users/Usuario-PC/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tctt0800.pk" 1778461107 7416 6db4e4daa5ef4cd5abf39e45bc411164 ""
@@ -178,7 +178,7 @@
   "C:/Users/Usuario-PC/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/Usuario-PC/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Usuario-PC/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/Usuario-PC/Desktop/Respaldos Cliente Leonel Tipan/Desktop/Universidad/8vosemestre/moviles/pry_lab2/lib/informe/informelab.tex" 1778641459 25036 22e37b8d42373eaf4bf08c2bb5a57dca ""
+  "c:/Users/Usuario-PC/Desktop/Respaldos Cliente Leonel Tipan/Desktop/Universidad/8vosemestre/moviles/pry_lab2/lib/informe/informelab.tex" 1778642046 25036 22e37b8d42373eaf4bf08c2bb5a57dca ""
   "img_prob1.png" 1778640480 71034 8bebd80d12dd7d2b66947fe05fe10887 ""
   "img_prob1s.png" 1778640549 90496 1327dd69ab6d60d4461b8944b1d7213e ""
   "img_prob2.png" 1778640651 73136 967917ee340900631fc76e0d3c8c6cf2 ""
@@ -189,11 +189,11 @@
   "img_prob4s.png" 1778641026 91077 8818db42f24fe5480b409702e0c40270 ""
   "img_prob5.png" 1778641073 93707 618a29f886b49bd0604a9a553417a3ab ""
   "img_prob5s.png" 1778641093 103845 13547461912ec3405f11d728af88e929 ""
-  "informelab.aux" 1778641461 4789 ed190ea701c750abb65a21d910620be6 "pdflatex"
-  "informelab.listing" 1778641461 442 26adab6cea0eb2654043edfd40ef7d23 "pdflatex"
-  "informelab.out" 1778641461 5216 4905a182fc06f3a00a7834b0a05a38bc "pdflatex"
-  "informelab.tex" 1778641459 25036 22e37b8d42373eaf4bf08c2bb5a57dca ""
-  "informelab.toc" 1778641461 3019 bfdee109db88805e5b70ea931b3640b3 "pdflatex"
+  "informelab.aux" 1778642050 4789 ed190ea701c750abb65a21d910620be6 "pdflatex"
+  "informelab.listing" 1778642050 442 26adab6cea0eb2654043edfd40ef7d23 "pdflatex"
+  "informelab.out" 1778642050 5216 4905a182fc06f3a00a7834b0a05a38bc "pdflatex"
+  "informelab.tex" 1778642046 25036 22e37b8d42373eaf4bf08c2bb5a57dca ""
+  "informelab.toc" 1778642050 3019 bfdee109db88805e5b70ea931b3640b3 "pdflatex"
   "logo_departamento.png" 1778464254 89654 c0add24f6f01b14cb1e77c4e20ffe91d ""
   "logo_espe.png" 1778464104 270655 6f006598bb28edbfc5d8aab90eab459e ""
   "main.png" 1778640031 80389 b371dc35ce972bb62a52683224e8aabb ""
