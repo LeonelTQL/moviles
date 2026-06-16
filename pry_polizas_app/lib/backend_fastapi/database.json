@@ -1,0 +1,50 @@
+[
+  {
+    "codigo": "POL-001",
+    "cliente": "Juan Pérez",
+    "tipo_seguro": "Vehicular",
+    "fecha_inicio": "2026-06-01",
+    "fecha_vencimiento": "2027-06-01",
+    "valor_asegurado": 15000.0
+  },
+  {
+    "codigo": "POL-002",
+    "cliente": "María Gómez",
+    "tipo_seguro": "Salud",
+    "fecha_inicio": "2026-05-15",
+    "fecha_vencimiento": "2027-05-15",
+    "valor_asegurado": 8000.0
+  },
+  {
+    "codigo": "POL-103",
+    "cliente": "Pulpo",
+    "tipo_seguro": "olaWAPOS",
+    "fecha_inicio": "2026-06-16",
+    "fecha_vencimiento": "2026-07-17",
+    "valor_asegurado": 1000.0
+  },
+  {
+    "cliente": "Pol",
+    "tipo_seguro": "Zip",
+    "fecha_inicio": "2026-06-16",
+    "fecha_vencimiento": "2026-07-17",
+    "valor_asegurado": 1500.0,
+    "codigo": "POL-102"
+  },
+  {
+    "cliente": "Pol",
+    "tipo_seguro": "Zip",
+    "fecha_inicio": "2026-06-16",
+    "fecha_vencimiento": "2026-07-31",
+    "valor_asegurado": 15000.0,
+    "codigo": "POL-106"
+  },
+  {
+    "cliente": "Pepe",
+    "tipo_seguro": "Dass",
+    "fecha_inicio": "2026-06-16",
+    "fecha_vencimiento": "2026-07-16",
+    "valor_asegurado": 11500.0,
+    "codigo": "POL-105"
+  }
+]
