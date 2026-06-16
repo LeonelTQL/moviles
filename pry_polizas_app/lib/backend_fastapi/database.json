@@ -32,19 +32,19 @@
     "codigo": "POL-102"
   },
   {
-    "cliente": "Pol",
-    "tipo_seguro": "Zip",
-    "fecha_inicio": "2026-06-16",
-    "fecha_vencimiento": "2026-07-31",
-    "valor_asegurado": 15000.0,
-    "codigo": "POL-106"
-  },
-  {
     "cliente": "Pepe",
     "tipo_seguro": "Dass",
     "fecha_inicio": "2026-06-16",
     "fecha_vencimiento": "2026-07-16",
     "valor_asegurado": 11500.0,
     "codigo": "POL-105"
+  },
+  {
+    "cliente": "Juan",
+    "tipo_seguro": "Veh8cular",
+    "fecha_inicio": "2026-06-16",
+    "fecha_vencimiento": "2026-07-31",
+    "valor_asegurado": 20000000000.0,
+    "codigo": "001"
   }
 ]

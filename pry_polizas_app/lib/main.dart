@@ -58,7 +58,7 @@ class PolicyApp extends StatelessWidget {
             backgroundColor: primaryColor,
             foregroundColor: Colors.white,
             titleTextStyle: TextStyle(
-              fontSize: 20,
+              fontSize: 20, ""
               fontWeight: FontWeight.w800,
               color: Colors.white,
             ),
