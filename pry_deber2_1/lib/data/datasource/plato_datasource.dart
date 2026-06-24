@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/plato_model.dart';
 
 class PlatoDatasource {
-  final String baseUrl = "http://10.0.2.2:3000/api"; // Para emulador Android
+  final String baseUrl = "http://10.40.14.24:3000/api"; // Para emulador Android
 
   Future<List<PlatoModel>> getPlatos() async {
     final response = await http.get(Uri.parse('$baseUrl/platos'));

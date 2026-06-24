@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/pedido_model.dart';
 
 class PedidoDatasource {
-  final String baseUrl = "http://10.0.2.2:3000/api";
+  final String baseUrl = "http://10.40.14.24:3000/api";
 
   Future<List<PedidoModel>> getPedidos() async {
     final response = await http.get(Uri.parse('$baseUrl/pedidos'));
