@@ -8,6 +8,7 @@ const deliveryRoutes = require('../modules/delivery/delivery.routes');
 const paymentRoutes = require('../modules/payments/payments.routes');
 const uploadRoutes = require('../modules/uploads/uploads.routes');
 const notificationRoutes = require('../modules/notifications/notifications.routes');
+const mapsRoutes = require('../modules/maps/maps.routes');
 
 const router = Router();
 
@@ -20,5 +21,6 @@ router.use('/delivery', deliveryRoutes);
 router.use('/payments', paymentRoutes);
 router.use('/uploads', uploadRoutes);
 router.use('/notifications', notificationRoutes);
+router.use('/maps', mapsRoutes);
 
 module.exports = router;

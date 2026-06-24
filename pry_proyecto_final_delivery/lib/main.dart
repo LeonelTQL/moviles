@@ -7,6 +7,8 @@ import 'data/repositories/address_repository_impl.dart';
 import 'data/repositories/delivery_repository_impl.dart';
 import 'data/repositories/order_repository_impl.dart';
 import 'data/repositories/product_repository_impl.dart';
+import 'data/datasource/remote/maps_remote_datasource.dart';
+import 'data/repositories/maps_repository_impl.dart';
 import 'presentation/routes/app_routes.dart';
 import 'presentation/viewmodels/auth_viewmodel.dart';
 import 'presentation/viewmodels/address_viewmodel.dart';
@@ -14,6 +16,7 @@ import 'presentation/viewmodels/cart_viewmodel.dart';
 import 'presentation/viewmodels/delivery_viewmodel.dart';
 import 'presentation/viewmodels/order_viewmodel.dart';
 import 'presentation/viewmodels/product_viewmodel.dart';
+import 'presentation/viewmodels/maps_viewmodel.dart';
 import 'themes/theme_general.dart';
 
 void main() {
@@ -37,6 +40,7 @@ class SmartDeliveryApp extends StatelessWidget {
     final addressRepository = AddressRepositoryImpl(apiClient);
     final orderRepository = OrderRepositoryImpl(apiClient);
     final deliveryRepository = DeliveryRepositoryImpl(apiClient);
+    final mapsRepository = MapsRepositoryImpl(MapsRemoteDatasource(apiClient));
 
     return MultiProvider(
       providers: [
@@ -46,6 +50,7 @@ class SmartDeliveryApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CartViewModel()),
         ChangeNotifierProvider(create: (_) => OrderViewModel(orderRepository)),
         ChangeNotifierProvider(create: (_) => DeliveryViewModel(deliveryRepository)),
+        ChangeNotifierProvider(create: (_) => MapsViewModel(mapsRepository)),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

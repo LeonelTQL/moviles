@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../domain/entities/address.dart';
+import '../../domain/entities/map_place.dart';
 import '../../themes/esquema_color.dart';
 import '../viewmodels/address_viewmodel.dart';
 import '../viewmodels/delivery_viewmodel.dart';
+import '../viewmodels/maps_viewmodel.dart';
 import 'custom_text_field.dart';
 
 class AddressPickerSheet extends StatefulWidget {
@@ -25,6 +27,7 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
   final _formKey = GlobalKey<FormState>();
   final _label = TextEditingController();
   final _addressLine = TextEditingController();
+  final _search = TextEditingController();
   double? _lat;
   double? _lng;
 
@@ -32,6 +35,7 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
   void dispose() {
     _label.dispose();
     _addressLine.dispose();
+    _search.dispose();
     super.dispose();
   }
 
@@ -44,9 +48,32 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
       );
       return;
     }
+
+    final place = await context.read<MapsViewModel>().reverseGeocode(
+          latitude: position.latitude,
+          longitude: position.longitude,
+        );
+
+    if (!mounted) return;
     setState(() {
       _lat = position.latitude;
       _lng = position.longitude;
+      if (place?.formattedAddress != null && place!.formattedAddress!.isNotEmpty) {
+        _addressLine.text = place.formattedAddress!;
+      }
+      if (_label.text.trim().isEmpty) _label.text = 'Mi ubicación';
+    });
+  }
+
+  Future<void> _selectPrediction(MapPlace prediction) async {
+    final place = await context.read<MapsViewModel>().selectPrediction(prediction);
+    if (!mounted || place == null || !place.hasCoordinates) return;
+    setState(() {
+      _lat = place.latitude;
+      _lng = place.longitude;
+      _addressLine.text = place.formattedAddress ?? place.description;
+      if (_label.text.trim().isEmpty) _label.text = place.name ?? place.mainText;
+      _search.text = place.description;
     });
   }
 
@@ -54,7 +81,7 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
     if (!_formKey.currentState!.validate()) return;
     if (_lat == null || _lng == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Captura la ubicación GPS para guardar la dirección.')),
+        const SnackBar(content: Text('Selecciona una dirección de Google Maps o captura tu GPS.')),
       );
       return;
     }
@@ -74,7 +101,7 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
   Widget build(BuildContext context) {
     final vm = context.watch<AddressViewModel>();
     return Container(
-      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * .82),
+      constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * .88),
       padding: EdgeInsets.fromLTRB(24, 18, 24, MediaQuery.of(context).padding.bottom + 24),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -119,15 +146,13 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
               separatorBuilder: (_, __) => const Divider(height: 1),
               itemBuilder: (_, index) {
                 final address = vm.addresses[index];
-                final selected = widget.selectedAddress?.id == address.id || vm.selectedAddress?.id == address.id;
+                final selected = widget.selectedAddress?.id == address.id;
                 return ListTile(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 8),
-                  leading: Icon(address.isDefault ? Icons.stars_rounded : Icons.location_on_outlined, color: EsquemaColor.dark),
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(selected ? Icons.check_circle : Icons.location_on_outlined, color: selected ? EsquemaColor.success : EsquemaColor.dark),
                   title: Text(address.label, style: const TextStyle(fontWeight: FontWeight.w900, color: EsquemaColor.dark)),
                   subtitle: Text(address.addressLine),
-                  trailing: selected ? const Icon(Icons.check_circle, color: EsquemaColor.success) : null,
                   onTap: () {
-                    context.read<AddressViewModel>().select(address);
                     widget.onSelected(address);
                     Navigator.pop(context);
                   },
@@ -146,39 +171,83 @@ class _AddressPickerSheetState extends State<AddressPickerSheet> {
   }
 
   Widget _buildForm(AddressViewModel vm) {
+    final mapsVm = context.watch<MapsViewModel>();
     return Form(
       key: _formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            children: [
-              IconButton(onPressed: () => setState(() => _adding = false), icon: const Icon(Icons.arrow_back)),
-              const Expanded(child: Text('Nueva dirección', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: EsquemaColor.dark))),
-              const SizedBox(width: 48),
-            ],
-          ),
-          const SizedBox(height: 14),
-          CustomTextField(controller: _label, label: 'Etiqueta', validator: (value) => value != null && value.trim().length >= 2 ? null : 'Etiqueta requerida'),
-          const SizedBox(height: 12),
-          CustomTextField(controller: _addressLine, label: 'Dirección completa', maxLines: 2, validator: (value) => value != null && value.trim().length >= 5 ? null : 'Dirección requerida'),
-          const SizedBox(height: 12),
-          OutlinedButton.icon(
-            onPressed: _captureGps,
-            icon: const Icon(Icons.my_location),
-            label: Text(_lat == null ? 'Capturar ubicación GPS' : 'GPS listo: ${_lat!.toStringAsFixed(5)}, ${_lng!.toStringAsFixed(5)}'),
-          ),
-          if (vm.error != null) ...[
-            const SizedBox(height: 10),
-            Text(vm.error!, style: const TextStyle(color: EsquemaColor.danger)),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              children: [
+                IconButton(onPressed: () => setState(() => _adding = false), icon: const Icon(Icons.arrow_back)),
+                const Expanded(child: Text('Agregar dirección', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.w900, fontSize: 24, color: EsquemaColor.dark))),
+                const SizedBox(width: 48),
+              ],
+            ),
+            const SizedBox(height: 12),
+            TextFormField(
+              controller: _search,
+              decoration: InputDecoration(
+                labelText: 'Buscar con Google Maps',
+                hintText: 'Ej: Av. Amazonas y Naciones Unidas',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
+              ),
+              onChanged: (value) => context.read<MapsViewModel>().autocomplete(value),
+            ),
+            if (mapsVm.loading)
+              const Padding(padding: EdgeInsets.all(12), child: LinearProgressIndicator()),
+            if (mapsVm.predictions.isNotEmpty)
+              Container(
+                margin: const EdgeInsets.only(top: 8, bottom: 12),
+                decoration: BoxDecoration(border: Border.all(color: EsquemaColor.line), borderRadius: BorderRadius.circular(18)),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: mapsVm.predictions.length,
+                  separatorBuilder: (_, __) => const Divider(height: 1),
+                  itemBuilder: (_, index) {
+                    final item = mapsVm.predictions[index];
+                    return ListTile(
+                      leading: const Icon(Icons.place_outlined),
+                      title: Text(item.mainText, style: const TextStyle(fontWeight: FontWeight.w800)),
+                      subtitle: item.secondaryText.isEmpty ? null : Text(item.secondaryText),
+                      onTap: () => _selectPrediction(item),
+                    );
+                  },
+                ),
+              ),
+            if (mapsVm.error != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                child: Text(mapsVm.error!, style: const TextStyle(color: EsquemaColor.danger)),
+              ),
+            CustomTextField(
+              controller: _label,
+              label: 'Etiqueta',
+              validator: (value) => value == null || value.trim().length < 2 ? 'Etiqueta requerida.' : null,
+            ),
+            const SizedBox(height: 12),
+            CustomTextField(
+              controller: _addressLine,
+              label: 'Dirección',
+              maxLines: 2,
+              validator: (value) => value == null || value.trim().length < 5 ? 'Dirección requerida.' : null,
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: _captureGps,
+              icon: const Icon(Icons.my_location),
+              label: Text(_lat == null ? 'Usar mi GPS actual' : 'GPS capturado: ${_lat!.toStringAsFixed(5)}, ${_lng!.toStringAsFixed(5)}'),
+            ),
+            const SizedBox(height: 18),
+            ElevatedButton(
+              onPressed: vm.loading ? null : _saveAddress,
+              child: vm.loading ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)) : const Text('Guardar dirección'),
+            ),
           ],
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: vm.loading ? null : _saveAddress,
-            child: vm.loading ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white)) : const Text('Guardar dirección'),
-          ),
-        ],
+        ),
       ),
     );
   }

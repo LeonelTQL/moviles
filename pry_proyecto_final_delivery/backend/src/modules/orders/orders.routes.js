@@ -119,12 +119,12 @@ router.post('/', requireAuth, allowRoles('cliente'), validate(createOrderSchema)
     for (const item of items) {
       const productResult = await client.query(
         `SELECT p.id, p.name, p.price, p.stock, p.active, p.restaurant_id,
-                COALESCE(r.delivery_fee, 1.50) AS delivery_fee,
-                COALESCE(r.commission_rate, 0.18) AS commission_rate,
-                COALESCE(r.min_order_amount, 5.00) AS min_order_amount
-         FROM products p
-         LEFT JOIN restaurants r ON r.id = p.restaurant_id
-         WHERE p.id = $1 FOR UPDATE`,
+                 COALESCE(r.delivery_fee, 1.50) AS delivery_fee,
+                 COALESCE(r.commission_rate, 0.18) AS commission_rate,
+                 COALESCE(r.min_order_amount, 5.00) AS min_order_amount
+          FROM products p
+          LEFT JOIN restaurants r ON r.id = p.restaurant_id
+          WHERE p.id = $1 FOR UPDATE OF p`,
         [item.productId]
       );
 
