@@ -15,6 +15,7 @@ class CustomElevatedButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
+        key: key, // Use the widget's key if provided
         onPressed: onPressed,
         child: Text(text),
       ),

@@ -72,7 +72,7 @@ class PinViewModel extends ChangeNotifier{
     _isCorrect = false;
     notifyListeners();
   }
-  //cambiar ping
+  //cambiar pin
   Future<void> updatePin(String newPin) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_pinKey, newPin);
@@ -81,7 +81,7 @@ class PinViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  //olvide el ping
+  //olvide el pin
   Future<void> resetPin() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_pinKey, '1234');
